@@ -1,68 +1,26 @@
-palk=[1200,2500,750,395,1200]
-inimesed=["A","B","C","D","E"]
-def palgad(p,i):
-    print(palk)
-    print(inimesed)
-    v=input("Средняя зарплата - 1,\nМинимальная зарплата - 2,\nМаксимальная зарплата - 3,\nПоиск по имени - 4,\nСортировка - 5, \nДобавить человека - 6\n")
-    if v=="1":
-        kesk_palk=round(keskmine(palk),2)
-        print("Keskmine palk on ",kesk_palk)
-    elif valik=="2":
-        m_palgad,nimed=minimum(palk,inimesed)
-        for n in nimed:
-            print(m_palgad[0], " saab kätte ",n)
-    elif valik=="3":
-        max_palk,kellel=maksimum(palk,inimesed)
-        print("Maksimaalne palk ", max_palk, " saab kätte ",kellel)
-    elif valik=="4":
-        ots_nimi,ots_palk=nimi(palk,inimesed)
-        for i in range(len(ots_nimi)):
-            print(ots_nimi[i]," saab kätte ", ots_palk[i])
-    elif valik=="5":
-        p,i=sorteerimine(palk,inimesed)
-        for i in range(len(inimesed)):
-            print(inimesed[i]," saab kätte ", palk[i])
-    elif valik=="6":
-        p,i=delete(palk,inimesed)
-        print(palk,inimesed)
-        if len(inimesed)==0:
-            print("Tühi list")
-        else:
-            for i in range(len(inimesed)):
-                print(inimesed[i]," saab kätte ", palk[i])
-    elif valik=="6":
-        i=adding(palk,inimesed)
-        print(palk,inimesed)
-
-    elif valik=="top_max":
-        p, i=topbogat(palk,inimesed)
-
-def topbogat(palk,inimesed):
-    top,inimes=sorteerimine(palk,inimesed)
-    k= int(input("Выберите значение топ: " ))
-    palk.reverse()
-    inimesed.reverse()
-    for i in range(0,k,1):
-        print(palk[i])
-        print(inimesed[i])
-    return palk, inimesed  
-
-def adding(palk,inimesed):
-    add=input("Кого добавить? ")
+﻿def adding(palk,inimesed):
+    add=input("Введите имя: ")
     inimesed.append(add)
-    add_zp=int(input("Какая зарплата? " ))
+    add_zp=int(input("Введите зарплату: "))
     palk.append(add_zp)
     return palk,inimesed
-
+def adding(palk,inimesed):
+    add=input("Имя человека:  ")
+    inimesed.append(add)
+    add_palk=int(input("Зарплата человека:  " ))
+    palk.append(add_palk)
+    return palk,inimesed
+    print()
+    print()
 def delete(palk, inimesed):
-    x=input("name or number ")
-    if x=="number":
-        i=int(input("Chose number "))
+    x=input("Имя пользователя написано буквами - 1 или цифрами - 2? ")
+    if x=="2":
+        i=int(input("Введите номер: "))
         palk.pop(i-1)
         inimesed.pop(i-1)
-    elif x=="name":
+    elif x=="1":
         i=0
-        keda=input("Write the name => ")
+        keda=input("Введите имя: ")
         n=len(inimesed)
         while i<n:
             if keda==inimesed[i]:
@@ -71,8 +29,6 @@ def delete(palk, inimesed):
                 n=len(inimesed)
             else:
                 i+=1
-            return palk, inimesed
-
 def kustutamine():
     keskmin = keskmine(palk)
     print(keskmin)
@@ -81,7 +37,8 @@ def kustutamine():
             index = palk.index(i)
             palk.pop(index)
             inimesed.pop(index)
-       
+            print()
+            print()
 def sorteerimine(palk,inimesed):
     abi_p=0
     abi_i=""
@@ -96,22 +53,25 @@ def sorteerimine(palk,inimesed):
                 inimesed[i]=inimesed[j]
                 inimesed[j]=abi_i
     return palk,inimesed
-
+    print()
+    print()
 def nimi(palk,inimesed):
     ots_nimi=[]
     ots_palk=[]
     palk_keda=0
-    keda=input("Sisesta nimi... ")
+    keda=input("Введите имя: ")
     n=len(inimesed)
     for j in range(n):
         if inimesed[j]==keda:
             palk_keda=palk[j]
             ots_nimi.append(inimesed[j])
             ots_palk.append(palk_keda)
+            print()
+            print()
         else:pass
     return ots_nimi,ots_palk
-
-
+    print()
+    print()
 def maksimum(palk,inimesed):
     m_palgad=[]
     nimed=[]
@@ -122,6 +82,8 @@ def maksimum(palk,inimesed):
             max_palk=p
             i=palk.index(max_palk)
             kellel=inimesed[i]
+            print()
+            print()
     n=palk.count(max_palk)
     palk_copy=palk.copy()
     inimesed_copy=inimesed.copy()
@@ -130,7 +92,8 @@ def maksimum(palk,inimesed):
         m_palgad.append(palk_copy.pop(j))
         nimed.append(inimesed_copy.pop(j))
     return m_palgad, nimed
-
+    print()
+    print()
 def minimum(palk,inimesed):
     m_palgad=[]
     nimed=[]
@@ -149,7 +112,8 @@ def minimum(palk,inimesed):
         m_palgad.append(palk_copy.pop(j))
         nimed.append(inimesed_copy.pop(j))
     return m_palgad, nimed
-   
+    print()
+    print()
 def keskmine(palk):
     summa=0
     n=len(palk)
@@ -157,6 +121,49 @@ def keskmine(palk):
         summa+=p
     k=summa/n
     return k
-
-while True:
-    palgad(palk,inimesed)
+    print()
+    print()
+def nimi(palk,inimesed):
+    ots_nimi=[]
+    ots_palk=[]
+    palk_keda=0
+    keda=input("Введите имя: ")
+    n=len(inimesed)
+    for j in range(n):
+        if inimesed[j]==keda:
+            palk_keda=palk[j]
+            ots_nimi.append(inimesed[j])
+            ots_palk.append(palk_keda)
+            print()
+            print()
+        else:pass
+    return ots_nimi,ots_palk
+    print()
+    print()
+def kalk():
+    print("Это калькулятор) Поможет со сложными вычислениями")
+    while True:
+        print("Выберите действие которое хотите сделать:\n"
+              "Сложить: +\n"
+              "Вычесть: -\n"
+              "Умножить: *\n"
+              "Поделить: /\n"
+              "Выйти: q\n")
+        action = input("Действие: ")
+        if action == "q":
+            print("Выход из программы")
+            break
+        if action in ('+', '-', '*', '/'):
+            x = float(input("x = "))
+            y = float(input("y = "))
+            if action == '+':
+                print('%.2f + %.2f = %.2f' % (x, y, x+y))
+            elif action == '-':
+                print('%.2f - %.2f = %.2f' % (x, y, x-y))
+            elif action == '*':
+                print('%.2f * %.2f = %.2f' % (x, y, x*y))
+            elif action == '/':
+                if y != 0:
+                    print('%.2f / %.2f = %.2f' % (x, y, x/y))
+                else:
+                    print("Нельзя на 0 делить")
